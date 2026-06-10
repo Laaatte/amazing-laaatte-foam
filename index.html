@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>WebP 변환툴</title>
+  <meta name="description" content="서버 업로드 없이 브라우저에서 바로 이미지를 WebP로 변환하는 무료 도구. 압축률과 해상도를 조절할 수 있고, 모든 처리는 사용자 기기 안에서만 이루어집니다." />
+  <meta name="author" content="Laaatte" />
+  <meta name="theme-color" content="#0b0c0b" />
+  <link rel="canonical" href="https://webp.laaatte.com" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="WebP 변환툴" />
+  <meta property="og:description" content="서버 업로드 없이 브라우저에서 바로 이미지를 WebP로 변환합니다." />
+  <meta property="og:url" content="https://webp.laaatte.com" />
+  <meta property="og:locale" content="ko_KR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="WebP 변환툴" />
+  <meta name="twitter:description" content="서버 업로드 없이 브라우저에서 바로 이미지를 WebP로 변환합니다." />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "WebP 변환툴",
+    "url": "https://webp.laaatte.com",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+    "description": "서버 업로드 없이 브라우저에서 이미지를 WebP로 변환하는 도구"
+  }
+  </script>
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>WebP 변환툴</h1>
+    <p class="subtitle">이미지를 드래그하거나 클릭해서 WebP로 변환하세요</p>
+  </header>
+
+  <main>
+    <noscript>
+      <p class="noscript-warning">이 도구는 JavaScript가 켜져 있어야 동작합니다.</p>
+    </noscript>
+
+    <div class="controls-bar">
+      <div class="controls-left">
+        <div class="quality-control">
+          <label for="quality">압축률 <span id="quality-value">20</span>%</label>
+          <input type="range" id="quality" min="5" max="95" value="20" step="5" />
+        </div>
+        <div class="resize-control">
+          <label class="toggle-label">
+            <input type="checkbox" id="resize-toggle" />
+            <span>해상도 축소 <span id="resize-value">50</span>%</span>
+          </label>
+          <input type="range" id="resize-amount" min="0" max="90" value="50" step="5" disabled />
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" id="btn-clear" class="btn btn-ghost" disabled>초기화</button>
+        <button type="button" id="btn-download-all" class="btn btn-primary" disabled>전체 다운로드</button>
+      </div>
+    </div>
+
+    <div id="drop-zone" class="drop-zone" role="button" tabindex="0" aria-label="이미지 파일 선택 또는 드래그 앤 드롭">
+      <div class="drop-zone-inner">
+        <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <p class="drop-text">이미지를 여기에 드래그하거나</p>
+        <label for="file-input" class="btn btn-secondary">파일 선택</label>
+        <input type="file" id="file-input" accept="image/*" multiple hidden />
+        <p class="drop-hint">PNG, JPG, JPEG, GIF, BMP, SVG 지원 · 파일당 최대 50MB</p>
+      </div>
+    </div>
+
+    <section id="results" class="results hidden" aria-live="polite">
+      <div class="results-header">
+        <span id="results-count"></span>
+        <span id="results-summary"></span>
+      </div>
+      <ul id="file-list" class="file-list"></ul>
+    </section>
+  </main>
+
+  <footer class="disclaimer">
+    <p>ⓘ 이 도구는 브라우저(바닐라 JS·Canvas)에서 변환하므로, 전문 압축 툴보다 성능이 낮을 수 있습니다.</p>
+    <p>🔒 모든 변환은 사용자 기기에서만 처리되며, 어떠한 정보도 서버로 저장하지 않습니다.</p>
+    <p>📍 변환 과정에서 위치, 촬영일시 등 EXIF 메타데이터는 모두 제거됩니다.</p>
+    <p>소스코드는 <a href="https://github.com/Laaatte/amazing-laaatte-foam" target="_blank" rel="noopener noreferrer">GitHub</a>에서 볼 수 있습니다.</p>
+  </footer>
+</body>
+</html>
